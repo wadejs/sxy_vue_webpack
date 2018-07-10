@@ -3,7 +3,6 @@ require('./check-versions')()
 
 process.env.NODE_ENV = 'production'
 let folder = process.argv[process.argv.length - 1]
-console.log(folder)
 const ora = require('ora')
 const rm = require('rimraf')
 const path = require('path')

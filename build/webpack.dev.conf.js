@@ -1,6 +1,5 @@
 'use strict'
 let folder = process.argv[process.argv.length - 1]
-console.log(process.argv)
 const utils = require('./utils')
 const webpack = require('webpack')
 const config = require(`../${folder}/config`)
