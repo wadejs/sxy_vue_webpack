@@ -1,7 +1,7 @@
 'use strict'
 let folder = process.argv[process.argv.length - 1]
 const path = require('path')
-const config = require(`../tpl/config`)
+const config = require(`../${folder}/config`)
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const packageConfig = require('../package.json')
 
