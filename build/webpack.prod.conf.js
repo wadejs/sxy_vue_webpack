@@ -11,7 +11,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-
+const QiniuPlugin = require('qiniu-webpack-plugin')
 const env = require(`../${folder}/config/prod.env`)
 
 const webpackConfig = merge(baseWebpackConfig, {
@@ -29,6 +29,13 @@ const webpackConfig = merge(baseWebpackConfig, {
     chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
   },
   plugins: [
+    new QiniuPlugin({
+      ACCESS_KEY: 'WBfKghE0TNykijwnAutbyS1eZkSzjdH0zh9MkQGz',
+      SECRET_KEY: '0uUZJ0drePZxcoEYuGKW3QGAbuVOKbBWfLa-splQ',
+      bucket: 'sxy7-com-h5',
+      path: `${folder}/`,
+      include: [/\.(png|jpe?g|gif|svg)(\?.*)?$/]
+    }),
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
       'process.env': env
@@ -49,7 +56,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       // Their CSS will instead be inserted dynamically with style-loader when the codesplit chunk has been loaded by webpack.
       // It's currently set to `true` because we are seeing that sourcemaps are included in the codesplit bundle as well when it's `false`, 
       // increasing file size: https://github.com/vuejs-templates/webpack/issues/1110
-      allChunks: true,
+      allChunks: true
     }),
     // Compress extracted CSS. We are using this plugin so that possible
     // duplicated CSS from different components can be deduped.
@@ -112,7 +119,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     // copy custom static assets
     new CopyWebpackPlugin([
       {
-        from: path.resolve(__dirname, '../static'),
+        from: path.resolve(__dirname, `../${folder}/static`),
         to: config.build.assetsSubDirectory,
         ignore: ['.*']
       }

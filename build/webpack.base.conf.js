@@ -36,6 +36,7 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve(folder),
+      '@pages': resolve(folder) + '/pages/'
     }
   },
   module: {
@@ -56,7 +57,8 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: utils.assetsPath('img/[name].[hash:7].[ext]')
+          name: utils.assetsPath('img/[name].[hash:7].[ext]'),
+          publicPath: `http://qiniu.cdn.sxy7.com/${folder}/`
         }
       },
       {
