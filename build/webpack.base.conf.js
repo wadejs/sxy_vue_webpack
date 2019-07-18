@@ -58,7 +58,9 @@ module.exports = {
         options: {
           limit: 10000,
           name: utils.assetsPath('img/[name].[hash:7].[ext]'),
-          publicPath: `http://qiniu.cdn.sxy7.com/${folder}/`
+          publicPath: process.env.NODE_ENV === 'production'
+          ? `http://qiniu.cdn.sxy7.com/${folder}/`
+          : config.dev.assetsPublicPath
         }
       },
       {
